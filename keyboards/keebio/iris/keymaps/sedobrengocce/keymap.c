@@ -14,51 +14,44 @@ enum custom_keycodes {
   NUMPAD
 };
 
-enum {
-  TD_LCTL_RCTL,
-  TD_LALT_RALT,
-  TD_LGUI_RGUI,
-  TD_LSFT_CAPS,
-};
-
 bool caps_lock_on = false;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
+     KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+     KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-TD(TD_LSFT_CAPS), KC_A, KC_S,   KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+     KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-TD(TD_LCTL_RCTL), KC_Z, KC_X,   KC_C,    KC_V,    KC_B,    LOWER,           KC_BSLS, KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RSFT_T(KC_ENT),
+     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    LOWER,            RAISE,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                        TD(TD_LGUI_RGUI), TD(TD_LALT_RALT), RAISE,               KC_SPC,  KC_LBRC, KC_RBRC
+                                    KC_LGUI, KC_LALT, KC_SPC,              KC_ENT,  KC_LBRC, KC_RBRC
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
   [_NUMPAD] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, _______, _______, _______, _______, _______,                            _______, KC_NUM,  KC_LPRN, KC_RPRN, KC_PPLS, _______,
+     _______, _______, _______, _______, _______, _______,                            _______, KC_NUM,  KC_PSLS, KC_PAST, KC_PMNS, KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TAB,  _______, _______, _______, _______, _______,                            _______, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, KC_BSPC,
+     KC_TAB,  _______, _______, _______, _______, _______,                            _______, KC_P7,   KC_P8,   KC_P9,   KC_PPLS, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, _______, _______, _______,                            _______, KC_P4,   KC_P5,   KC_P6,   KC_PAST, KC_EQL,
+     KC_CAPS, _______, _______, _______, _______, _______,                            _______, KC_P4,   KC_P5,   KC_P6,   KC_PEQL, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, _______, _______, _______, LOWER,            _______, _______, KC_P1,   KC_P2,   KC_P3,   KC_PSLS, KC_ENT,
+     KC_RCTL, _______, _______, _______, _______, _______, LOWER,            RAISE,   _______, KC_P1,   KC_P2,   KC_P3,   KC_PCMM, KC_APP,,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_LGUI, KC_RALT, RAISE,                     KC_SPC,  KC_P0,   KC_PDOT
+                                    KC_RGUI, KC_RALT, KC_SPC,                    KC_ENT,  KC_P0,   KC_PDOT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
   [_LOWER] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     KC_ESC,  _______, _______, _______, _______, _______,                            _______, KC_PSCR, KC_SCRL, KC_PAUS, _______, KC_UNDS,
+     KC_ESC,  _______, _______, _______, _______, _______,                            _______, KC_PSCR, KC_SCRL, KC_PAUS, KC_MINS, KC_EQL,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TAB,  _______, KC_UP,   _______, _______, _______,                            _______, KC_INS,  KC_HOME, KC_PGUP, KC_PLUS, KC_MINS,
+     KC_TAB,  _______, KC_UP,   _______, _______, _______,                            _______, KC_INS,  KC_HOME, KC_PGUP, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT, KC_LEFT, KC_DOWN, KC_RGHT, G(KC_LEFT), G(KC_RGHT),                      _______, KC_DEL,  KC_END,  KC_PGDN, _______, KC_EQL,
+     KC_LSFT, KC_LEFT, KC_DOWN, KC_RGHT, G(KC_LEFT), G(KC_RGHT),                      _______, KC_DEL,  KC_END,  KC_PGDN, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LCTL, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -95,16 +88,10 @@ TD(TD_LCTL_RCTL), KC_Z, KC_X,   KC_C,    KC_V,    KC_B,    LOWER,           KC_B
   )
 };
 
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_LCTL_RCTL] = ACTION_TAP_DANCE_DOUBLE(KC_LCTL, KC_RCTL),
-    [TD_LALT_RALT] = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
-    [TD_LGUI_RGUI] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_RGUI),
-    [TD_LSFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
-};
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     bool numpad_led_state = host_keyboard_led_state().num_lock;
     bool scroll_led_state = host_keyboard_led_state().scroll_lock;
+    bool caps_led_state = host_keyboard_led_state().caps_lock;
     switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
@@ -161,6 +148,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_SCRL:
       if (record->event.pressed) {
         if (!scroll_led_state) {
+            rgblight_sethsv (HSV_PINK);
+        } else {
+            rgblight_sethsv (HSV_PURPLE);
+        }
+      }
+      return true;
+      break;
+    case KC_CAPS:
+      if (record->event.pressed) {
+        if (!caps_led_state) {
             rgblight_sethsv (HSV_ORANGE);
         } else {
             rgblight_sethsv (HSV_RED);
@@ -177,9 +174,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     bool caps_led_state = host_keyboard_led_state().caps_lock;
     bool scroll_led_state = host_keyboard_led_state().scroll_lock;
     switch (get_highest_layer(state)) {
-    case _RAISE:
-        rgblight_sethsv (HSV_GREEN);
-        break;
     case _NUMPAD:
         if (numpad_led_state) {
             rgblight_sethsv (HSV_TEAL);
@@ -187,21 +181,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             rgblight_sethsv (HSV_BLUE);
         }
         break;
-    case _ADJUST:
-        rgblight_sethsv (HSV_GOLD);
-        break;
-    case _LOWER:
-        if (scroll_led_state) {
+    default: //  for any other layers, or the default layer
+        if (caps_led_state) {
             rgblight_sethsv (HSV_ORANGE);
         } else {
             rgblight_sethsv (HSV_RED);
-        }
-        break;
-    default: //  for any other layers, or the default layer
-        if (caps_led_state) {
-            rgblight_sethsv (HSV_PINK);
-        } else {
-            rgblight_sethsv (HSV_PURPLE);
         }
         break;
     }
